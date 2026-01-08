@@ -92,6 +92,13 @@
     </div>
 
     <script>
+        // Check A - Visual confirmation of Telegram WebApp environment
+        document.body.insertAdjacentHTML('afterbegin',
+          `<div style="position:fixed;top:8px;left:8px;z-index:9999;background:#000;color:#fff;padding:6px 10px;border-radius:8px;font:12px monospace">
+            Telegram WebApp: ${!!(window.Telegram && window.Telegram.WebApp)}
+          </div>`
+        );
+
         // Telegram WebApp initialization
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
