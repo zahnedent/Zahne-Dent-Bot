@@ -103,21 +103,7 @@
                         </svg>
                     </div>
                     <h3 class="text-lg font-semibold text-green-700 mb-2">Registration Successful!</h3>
-                    <p class="text-gray-600 text-sm mb-4">Your business has been successfully registered</p>
-                    <div class="bg-gray-50 rounded-lg p-4 text-left">
-                        <div class="mb-2">
-                            <span class="font-medium text-gray-700">Business Location:</span>
-                            <span class="text-gray-900 ml-2">Verified</span>
-                        </div>
-                        <div class="mb-2">
-                            <span class="font-medium text-gray-700">Latitude:</span>
-                            <span id="latitude" class="text-gray-900 ml-2"></span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-700">Longitude:</span>
-                            <span id="longitude" class="text-gray-900 ml-2"></span>
-                        </div>
-                    </div>
+                    <p class="text-gray-600 text-sm">Your business has been successfully registered</p>
                 </div>
 
                 <!-- Error State -->
@@ -141,24 +127,10 @@
     </div>
 
     <script>
-        // Check A - Visual confirmation of Telegram WebApp environment
-        document.body.insertAdjacentHTML('afterbegin',
-          `<div style="position:fixed;top:8px;left:8px;z-index:9999;background:#000;color:#fff;padding:6px 10px;border-radius:8px;font:12px monospace">
-            Telegram WebApp: ${!!(window.Telegram && window.Telegram.WebApp)}
-          </div>`
-        );
-
         // Telegram WebApp initialization
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
-
-            // Debug: Check launch mode (query_id indicates inline button mode)
-            console.log('Mini App: Telegram WebApp detected');
-            console.log('Mini App: query_id (should be undefined for keyboard buttons):',
-                       window.Telegram.WebApp.initDataUnsafe?.query_id);
-        } else {
-            console.log('Mini App: Telegram WebApp NOT available');
         }
 
         // DOM elements
@@ -166,8 +138,6 @@
         const loadingState = document.getElementById('loading-state');
         const successState = document.getElementById('success-state');
         const errorState = document.getElementById('error-state');
-        const latitudeEl = document.getElementById('latitude');
-        const longitudeEl = document.getElementById('longitude');
 
         // Form elements
         const businessNameInput = document.getElementById('business-name');
@@ -226,9 +196,6 @@
             loadingState.classList.add('hidden');
             successState.classList.remove('hidden');
             errorState.classList.add('hidden');
-
-            latitudeEl.textContent = latitude.toFixed(6);
-            longitudeEl.textContent = longitude.toFixed(6);
 
             if (window.Telegram && window.Telegram.WebApp) {
                 const dataToSend = JSON.stringify({
