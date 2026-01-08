@@ -46,20 +46,20 @@
                 <!-- Business Info Form -->
                 <div id="business-form" class="space-y-4">
                     <div class="text-center mb-6">
-                        <h2 class="text-xl font-bold text-gray-800">Business Registration</h2>
-                        <p class="text-gray-600 text-sm">Please provide your business information (optional)</p>
+                        <h2 class="text-xl font-bold text-gray-800" id="business-registration-title">Business Registration</h2>
+                        <p class="text-gray-600 text-sm" id="provide-info-text">Please provide your business information (optional)</p>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" id="business-name-label">Business Name</label>
                         <input type="text" id="business-name" placeholder="Enter your business name"
                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" id="country-label">Country</label>
                         <select id="country" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="">Select your country</option>
+                            <option value="" id="select-country-option">Select your country</option>
                             <option value="Syria">Syria</option>
                             <option value="Saudi Arabia">Saudi Arabia</option>
                             <option value="UAE">United Arab Emirates</option>
@@ -73,16 +73,16 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" id="email-label">Email Address</label>
                         <input type="email" id="email" placeholder="your.email@example.com"
                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
 
                     <div class="flex space-x-3 pt-4">
-                        <button id="skip-btn" class="flex-1 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition duration-200">
+                        <button id="skip-btn" class="flex-1 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition duration-200" id="skip-button">
                             Skip
                         </button>
-                        <button id="continue-btn" class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200">
+                        <button id="continue-btn" class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200" id="continue-button">
                             Continue
                         </button>
                     </div>
@@ -91,8 +91,8 @@
                 <!-- Loading State -->
                 <div id="loading-state" class="hidden text-center">
                     <div class="spinner mx-auto mb-4"></div>
-                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Verifying Business Location...</h3>
-                    <p class="text-gray-500 text-sm">Please wait while we verify your location</p>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2" id="verifying-location-title">Verifying Business Location...</h3>
+                    <p class="text-gray-500 text-sm" id="please-wait-text">Please wait while we verify your location</p>
                 </div>
 
                 <!-- Success State -->
@@ -102,8 +102,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-green-700 mb-2">Registration Successful!</h3>
-                    <p class="text-gray-600 text-sm">Your business has been successfully registered</p>
+                    <h3 class="text-lg font-semibold text-green-700 mb-2" id="registration-successful-title">Registration Successful!</h3>
+                    <p class="text-gray-600 text-sm" id="business-registered-text">Your business has been successfully registered</p>
                 </div>
 
                 <!-- Error State -->
@@ -113,8 +113,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-red-700 mb-2">Registration Failed</h3>
-                    <p class="text-gray-600 text-sm">We were unable to complete your business registration.</p>
+                    <h3 class="text-lg font-semibold text-red-700 mb-2" id="registration-failed-title">Registration Failed</h3>
+                    <p class="text-gray-600 text-sm" id="unable-to-complete-text">We were unable to complete your business registration.</p>
                     <p class="text-gray-500 text-xs mt-2">Please enable location services and try again.</p>
                 </div>
             </div>
@@ -146,12 +146,100 @@
         const skipBtn = document.getElementById('skip-btn');
         const continueBtn = document.getElementById('continue-btn');
 
+        // Language support for Mini App
+        const miniAppTexts = {
+            en: {
+                businessRegistration: 'Business Registration',
+                provideInfo: 'Please provide your business information (optional)',
+                businessName: 'Business Name',
+                country: 'Country',
+                email: 'Email Address',
+                skip: 'Skip',
+                continue: 'Continue',
+                verifyingLocation: 'Verifying Business Location...',
+                pleaseWait: 'Please wait while we verify your location',
+                registrationSuccessful: 'Registration Successful!',
+                businessRegistered: 'Your business has been successfully registered',
+                registrationFailed: 'Registration Failed',
+                unableToComplete: 'We were unable to complete your business registration.',
+                enableLocation: '<span id="enable-location-text">Please ensure location services are enabled and try again.</span>'
+            },
+            ar: {
+                businessRegistration: 'تسجيل العمل',
+                provideInfo: 'يرجى تقديم معلومات عملك (اختياري)',
+                businessName: 'اسم العمل',
+                country: 'البلد',
+                email: 'عنوان البريد الإلكتروني',
+                skip: 'تخطي',
+                continue: 'متابعة',
+                verifyingLocation: 'جاري التحقق من موقع العمل...',
+                pleaseWait: 'يرجى الانتظار أثناء التحقق من موقعك',
+                registrationSuccessful: 'تم التسجيل بنجاح!',
+                businessRegistered: 'تم تسجيل عملك بنجاح',
+                registrationFailed: 'فشل التسجيل',
+                unableToComplete: 'لم نتمكن من إكمال تسجيل عملك.',
+                enableLocation: 'يرجى التأكد من تمكين خدمات الموقع والمحاولة مرة أخرى.'
+            }
+        };
+
+        // Get language from URL parameter
+        function getLanguageFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            // Default to Arabic for unsupported languages
+            if (!lang || !miniAppTexts[lang]) {
+                return 'ar';
+            }
+            return lang;
+        }
+
+        // Current language
+        const currentLang = getLanguageFromUrl();
+        const texts = miniAppTexts[currentLang] || miniAppTexts.ar;
+
         // Business data storage
         let businessData = {
             businessName: '',
             country: '',
             email: ''
         };
+
+        // Apply translations to the page
+        function applyTranslations() {
+            // Business form translations
+            document.getElementById('business-registration-title').textContent = texts.businessRegistration;
+            document.getElementById('provide-info-text').textContent = texts.provideInfo;
+            document.getElementById('business-name-label').textContent = texts.businessName;
+            document.getElementById('country-label').textContent = texts.country;
+            document.getElementById('email-label').textContent = texts.email;
+            document.getElementById('skip-button').textContent = texts.skip;
+            document.getElementById('continue-button').textContent = texts.continue;
+
+            // Loading state translations
+            document.getElementById('verifying-location-title').textContent = texts.verifyingLocation;
+            document.getElementById('please-wait-text').textContent = texts.pleaseWait;
+
+            // Success state translations
+            document.getElementById('registration-successful-title').textContent = texts.registrationSuccessful;
+            document.getElementById('business-registered-text').textContent = texts.businessRegistered;
+
+            // Error state translations
+            document.getElementById('registration-failed-title').textContent = texts.registrationFailed;
+            document.getElementById('unable-to-complete-text').textContent = texts.unableToComplete;
+            document.getElementById('enable-location-text').textContent = texts.enableLocation;
+
+            // Update placeholders
+            businessNameInput.placeholder = texts.businessName === 'Business Name' ? 'Enter your business name' :
+                                          texts.businessName === 'اسم العمل' ? 'أدخل اسم عملك' : 'Enter your business name';
+            emailInput.placeholder = currentLang === 'ar' ? 'بريدك@example.com' : 'your.email@example.com';
+
+            // Update select option
+            document.getElementById('select-country-option').textContent =
+                currentLang === 'ar' ? 'اختر بلدك' : 'Select your country';
+        }
+
+        // Apply translations on page load
+        applyTranslations();
 
         // Form event handlers
         skipBtn.addEventListener('click', () => {
@@ -209,7 +297,10 @@
 
                 console.log('Mini App: Sending success data:', dataToSend);
                 window.Telegram.WebApp.sendData(dataToSend);
-                // sendData() automatically closes the WebApp
+                // Ensure WebApp closes after sending data
+                setTimeout(() => {
+                    window.Telegram.WebApp.close();
+                }, 500);
             } else {
                 console.error('Mini App: Telegram WebApp not available!');
             }
@@ -231,7 +322,10 @@
 
                 console.log('Mini App: Sending failure data:', dataToSend);
                 window.Telegram.WebApp.sendData(dataToSend);
-                // sendData() automatically closes the WebApp
+                // Ensure WebApp closes after sending data
+                setTimeout(() => {
+                    window.Telegram.WebApp.close();
+                }, 500);
             } else {
                 console.error('Mini App: Telegram WebApp not available!');
             }
