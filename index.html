@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico">
     <title>ZahnDent - Business Verification</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -28,10 +29,16 @@
         <div class="text-center mb-8">
             <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
                 <div class="flex items-center justify-center mb-4">
-                    <div class="bg-blue-600 rounded-full p-3 mr-3">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
+                    <div class="mr-3">
+                        <img src="zahndent_logo_88x88.png"
+                             alt="ZahnDent Logo"
+                             class="w-14 h-14 rounded-full"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="w-14 h-14 bg-blue-600 rounded-full p-3 hidden">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
                     </div>
                     <h1 class="text-3xl font-bold text-gray-800">ZahnDent</h1>
                 </div>
@@ -42,11 +49,6 @@
 
         <!-- Main Content -->
         <div class="max-w-md mx-auto">
-            <!-- Logo Header -->
-            <div class="text-center mb-6">
-                <img src="zahndent_logo_88x88.png" alt="ZahnDent Logo" class="w-22 h-22 mx-auto mb-4">
-            </div>
-
             <div id="verification-card" class="bg-white rounded-lg shadow-lg p-6">
                 <!-- Business Info Form -->
                 <div id="business-form" class="space-y-4">
