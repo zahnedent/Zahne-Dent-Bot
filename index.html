@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/Zahne-Dent-Bot/favicon.ico">
     <title>ZahnDent - Business Verification</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -29,16 +28,10 @@
         <div class="text-center mb-8">
             <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
                 <div class="flex items-center justify-center mb-4">
-                    <div class="mr-3">
-                        <img src="zahndent_logo_88x88.png"
-                             alt="ZahnDent Logo"
-                             class="w-14 h-14 rounded-full"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div class="w-14 h-14 bg-blue-600 rounded-full p-3 hidden">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
+                    <div class="bg-blue-600 rounded-full p-3 mr-3">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                     </div>
                     <h1 class="text-3xl font-bold text-gray-800">ZahnDent</h1>
                 </div>
@@ -53,34 +46,34 @@
                 <!-- Business Info Form -->
                 <div id="business-form" class="space-y-4">
                     <div class="text-center mb-6">
-                        <h2 class="text-xl font-bold text-gray-800" id="business-registration-title">Business Registration</h2>
-                        <p class="text-gray-600 text-sm" id="provide-info-text">Please provide your business information (optional)</p>
+                        <h2 class="text-xl font-bold text-gray-800">Business Registration</h2>
+                        <p class="text-gray-600 text-sm">Please provide your business information (optional)</p>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1" id="business-name-label">Business Name</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
                         <input type="text" id="business-name" placeholder="Enter your business name"
                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1" id="country-label">Country</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
                         <select id="country" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="" id="country-select">Select your country</option>
-                            <option value="Syria" id="country-syria">Syria</option>
-                            <option value="Saudi Arabia" id="country-saudi">Saudi Arabia</option>
-                            <option value="UAE" id="country-uae">United Arab Emirates</option>
-                            <option value="Jordan" id="country-jordan">Jordan</option>
-                            <option value="Lebanon" id="country-lebanon">Lebanon</option>
-                            <option value="Iraq" id="country-iraq">Iraq</option>
-                            <option value="Egypt" id="country-egypt">Egypt</option>
-                            <option value="Turkey" id="country-turkey">Turkey</option>
-                            <option value="Other" id="country-other">Other</option>
+                            <option value="">Select your country</option>
+                            <option value="Syria">Syria</option>
+                            <option value="Saudi Arabia">Saudi Arabia</option>
+                            <option value="UAE">United Arab Emirates</option>
+                            <option value="Jordan">Jordan</option>
+                            <option value="Lebanon">Lebanon</option>
+                            <option value="Iraq">Iraq</option>
+                            <option value="Egypt">Egypt</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1" id="email-label">Email Address</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                         <input type="email" id="email" placeholder="your.email@example.com"
                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
@@ -98,8 +91,8 @@
                 <!-- Loading State -->
                 <div id="loading-state" class="hidden text-center">
                     <div class="spinner mx-auto mb-4"></div>
-                    <h3 class="text-lg font-semibold text-gray-700 mb-2" id="verifying-location-title">Verifying Business Location...</h3>
-                    <p class="text-gray-500 text-sm" id="please-wait-text">Please wait while we verify your location</p>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Verifying Business Location...</h3>
+                    <p class="text-gray-500 text-sm">Please wait while we verify your location</p>
                 </div>
 
                 <!-- Success State -->
@@ -109,8 +102,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-green-700 mb-2" id="registration-successful-title">Registration Successful!</h3>
-                    <p class="text-gray-600 text-sm" id="business-registered-text">Your business has been successfully registered</p>
+                    <h3 class="text-lg font-semibold text-green-700 mb-2">Registration Successful!</h3>
+                    <p class="text-gray-600 text-sm">Your business has been successfully registered</p>
                 </div>
 
                 <!-- Error State -->
@@ -120,9 +113,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-red-700 mb-2" id="registration-failed-title">Registration Failed</h3>
-                    <p class="text-gray-600 text-sm" id="unable-to-complete-text">We were unable to complete your business registration.</p>
-                    <p class="text-gray-500 text-xs mt-2" id="enable-location-text">Please enable location services and try again.</p>
+                    <h3 class="text-lg font-semibold text-red-700 mb-2">Registration Failed</h3>
+                    <p class="text-gray-600 text-sm">We were unable to complete your business registration.</p>
+                    <p class="text-gray-500 text-xs mt-2">Please enable location services and try again.</p>
                 </div>
             </div>
 
@@ -153,128 +146,12 @@
         const skipBtn = document.getElementById('skip-btn');
         const continueBtn = document.getElementById('continue-btn');
 
-        // Language support for Mini App
-        const miniAppTexts = {
-            en: {
-                businessRegistration: 'Business Registration',
-                provideInfo: 'Please provide your business information (optional)',
-                businessName: 'Business Name',
-                country: 'Country',
-                email: 'Email Address',
-                skip: 'Skip',
-                continue: 'Continue',
-                verifyingLocation: 'Verifying Business Location...',
-                pleaseWait: 'Please wait while we verify your location',
-                registrationSuccessful: 'Registration Successful!',
-                businessRegistered: 'Your business has been successfully registered',
-                registrationFailed: 'Registration Failed',
-                unableToComplete: 'We were unable to complete your business registration.',
-                enableLocation: 'Please ensure location services are enabled and try again.',
-                selectCountry: 'Select your country',
-                syria: 'Syria',
-                saudiArabia: 'Saudi Arabia',
-                uae: 'United Arab Emirates',
-                jordan: 'Jordan',
-                lebanon: 'Lebanon',
-                iraq: 'Iraq',
-                egypt: 'Egypt',
-                turkey: 'Turkey',
-                other: 'Other'
-            },
-            ar: {
-                businessRegistration: 'تسجيل العمل',
-                provideInfo: 'يرجى تقديم معلومات عملك (اختياري)',
-                businessName: 'اسم العمل',
-                country: 'البلد',
-                email: 'عنوان البريد الإلكتروني',
-                skip: 'تخطي',
-                continue: 'متابعة',
-                verifyingLocation: 'جاري التحقق من موقع العمل...',
-                pleaseWait: 'يرجى الانتظار أثناء التحقق من موقعك',
-                registrationSuccessful: 'تم التسجيل بنجاح!',
-                businessRegistered: 'تم تسجيل عملك بنجاح',
-                registrationFailed: 'فشل التسجيل',
-                unableToComplete: 'لم نتمكن من إكمال تسجيل عملك.',
-                enableLocation: 'يرجى التأكد من تمكين خدمات الموقع والمحاولة مرة أخرى.',
-                selectCountry: 'اختر بلدك',
-                syria: 'سوريا',
-                saudiArabia: 'المملكة العربية السعودية',
-                uae: 'الإمارات العربية المتحدة',
-                jordan: 'الأردن',
-                lebanon: 'لبنان',
-                iraq: 'العراق',
-                egypt: 'مصر',
-                turkey: 'تركيا',
-                other: 'أخرى'
-            }
-        };
-
-        // Get language from URL parameter
-        function getLanguageFromUrl() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const lang = urlParams.get('lang');
-            // Default to Arabic for unsupported languages
-            if (!lang || !miniAppTexts[lang]) {
-                return 'ar';
-            }
-            return lang;
-        }
-
-        // Current language
-        const currentLang = getLanguageFromUrl();
-        const texts = miniAppTexts[currentLang] || miniAppTexts.ar;
-
         // Business data storage
         let businessData = {
             businessName: '',
             country: '',
             email: ''
         };
-
-        // Apply translations to the page
-        function applyTranslations() {
-            // Business form translations
-            document.getElementById('business-registration-title').textContent = texts.businessRegistration;
-            document.getElementById('provide-info-text').textContent = texts.provideInfo;
-            document.getElementById('business-name-label').textContent = texts.businessName;
-            document.getElementById('country-label').textContent = texts.country;
-            document.getElementById('email-label').textContent = texts.email;
-            document.getElementById('skip-btn').textContent = texts.skip;
-            document.getElementById('continue-btn').textContent = texts.continue;
-
-            // Loading state translations
-            document.getElementById('verifying-location-title').textContent = texts.verifyingLocation;
-            document.getElementById('please-wait-text').textContent = texts.pleaseWait;
-
-            // Success state translations
-            document.getElementById('registration-successful-title').textContent = texts.registrationSuccessful;
-            document.getElementById('business-registered-text').textContent = texts.businessRegistered;
-
-            // Error state translations
-            document.getElementById('registration-failed-title').textContent = texts.registrationFailed;
-            document.getElementById('unable-to-complete-text').textContent = texts.unableToComplete;
-            document.getElementById('enable-location-text').textContent = texts.enableLocation;
-
-            // Update placeholders
-            businessNameInput.placeholder = texts.businessName === 'Business Name' ? 'Enter your business name' :
-                                          texts.businessName === 'اسم العمل' ? 'أدخل اسم عملك' : 'Enter your business name';
-            emailInput.placeholder = currentLang === 'ar' ? 'بريدك@example.com' : 'your.email@example.com';
-
-            // Update country dropdown options
-            document.getElementById('country-select').textContent = texts.selectCountry || 'Select your country';
-            document.getElementById('country-syria').textContent = texts.syria || 'Syria';
-            document.getElementById('country-saudi').textContent = texts.saudiArabia || 'Saudi Arabia';
-            document.getElementById('country-uae').textContent = texts.uae || 'United Arab Emirates';
-            document.getElementById('country-jordan').textContent = texts.jordan || 'Jordan';
-            document.getElementById('country-lebanon').textContent = texts.lebanon || 'Lebanon';
-            document.getElementById('country-iraq').textContent = texts.iraq || 'Iraq';
-            document.getElementById('country-egypt').textContent = texts.egypt || 'Egypt';
-            document.getElementById('country-turkey').textContent = texts.turkey || 'Turkey';
-            document.getElementById('country-other').textContent = texts.other || 'Other';
-        }
-
-        // Apply translations on page load
-        applyTranslations();
 
         // Form event handlers
         skipBtn.addEventListener('click', () => {
@@ -332,10 +209,7 @@
 
                 console.log('Mini App: Sending success data:', dataToSend);
                 window.Telegram.WebApp.sendData(dataToSend);
-                // Ensure WebApp closes after sending data
-                setTimeout(() => {
-                    window.Telegram.WebApp.close();
-                }, 500);
+                // sendData() automatically closes the WebApp
             } else {
                 console.error('Mini App: Telegram WebApp not available!');
             }
@@ -357,10 +231,7 @@
 
                 console.log('Mini App: Sending failure data:', dataToSend);
                 window.Telegram.WebApp.sendData(dataToSend);
-                // Ensure WebApp closes after sending data
-                setTimeout(() => {
-                    window.Telegram.WebApp.close();
-                }, 500);
+                // sendData() automatically closes the WebApp
             } else {
                 console.error('Mini App: Telegram WebApp not available!');
             }
@@ -391,4 +262,3 @@
     </script>
 </body>
 </html>
-
