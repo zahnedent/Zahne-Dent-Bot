@@ -43,11 +43,56 @@
         <!-- Main Content -->
         <div class="max-w-md mx-auto">
             <div id="verification-card" class="bg-white rounded-lg shadow-lg p-6">
+                <!-- Business Info Form -->
+                <div id="business-form" class="space-y-4">
+                    <div class="text-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-800">Business Registration</h2>
+                        <p class="text-gray-600 text-sm">Please provide your business information (optional)</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
+                        <input type="text" id="business-name" placeholder="Enter your business name"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                        <select id="country" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select your country</option>
+                            <option value="Syria">Syria</option>
+                            <option value="Saudi Arabia">Saudi Arabia</option>
+                            <option value="UAE">United Arab Emirates</option>
+                            <option value="Jordan">Jordan</option>
+                            <option value="Lebanon">Lebanon</option>
+                            <option value="Iraq">Iraq</option>
+                            <option value="Egypt">Egypt</option>
+                            <option value="Turkey">Turkey</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="email" placeholder="your.email@example.com"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div class="flex space-x-3 pt-4">
+                        <button id="skip-btn" class="flex-1 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 transition duration-200">
+                            Skip
+                        </button>
+                        <button id="continue-btn" class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Loading State -->
-                <div id="loading-state" class="text-center">
+                <div id="loading-state" class="hidden text-center">
                     <div class="spinner mx-auto mb-4"></div>
-                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Verifying Region...</h3>
-                    <p class="text-gray-500 text-sm">Please wait while we verify your distribution zone</p>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Verifying Business Location...</h3>
+                    <p class="text-gray-500 text-sm">Please wait while we verify your location</p>
                 </div>
 
                 <!-- Success State -->
@@ -57,9 +102,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-green-700 mb-2">Verification Successful</h3>
-                    <p class="text-gray-600 text-sm mb-4">Your location has been verified</p>
+                    <h3 class="text-lg font-semibold text-green-700 mb-2">Registration Successful!</h3>
+                    <p class="text-gray-600 text-sm mb-4">Your business has been successfully registered</p>
                     <div class="bg-gray-50 rounded-lg p-4 text-left">
+                        <div class="mb-2">
+                            <span class="font-medium text-gray-700">Business Location:</span>
+                            <span class="text-gray-900 ml-2">Verified</span>
+                        </div>
                         <div class="mb-2">
                             <span class="font-medium text-gray-700">Latitude:</span>
                             <span id="latitude" class="text-gray-900 ml-2"></span>
@@ -78,8 +127,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-red-700 mb-2">Access Denied</h3>
-                    <p class="text-gray-600 text-sm">We cannot verify your distribution zone.</p>
+                    <h3 class="text-lg font-semibold text-red-700 mb-2">Registration Failed</h3>
+                    <p class="text-gray-600 text-sm">We were unable to complete your business registration.</p>
                     <p class="text-gray-500 text-xs mt-2">Please enable location services and try again.</p>
                 </div>
             </div>
@@ -113,14 +162,67 @@
         }
 
         // DOM elements
+        const businessForm = document.getElementById('business-form');
         const loadingState = document.getElementById('loading-state');
         const successState = document.getElementById('success-state');
         const errorState = document.getElementById('error-state');
         const latitudeEl = document.getElementById('latitude');
         const longitudeEl = document.getElementById('longitude');
 
+        // Form elements
+        const businessNameInput = document.getElementById('business-name');
+        const countrySelect = document.getElementById('country');
+        const emailInput = document.getElementById('email');
+        const skipBtn = document.getElementById('skip-btn');
+        const continueBtn = document.getElementById('continue-btn');
+
+        // Business data storage
+        let businessData = {
+            businessName: '',
+            country: '',
+            email: ''
+        };
+
+        // Form event handlers
+        skipBtn.addEventListener('click', () => {
+            console.log('User clicked Skip');
+            startLocationVerification();
+        });
+
+        continueBtn.addEventListener('click', () => {
+            // Collect form data
+            businessData.businessName = businessNameInput.value.trim();
+            businessData.country = countrySelect.value;
+            businessData.email = emailInput.value.trim();
+
+            console.log('Business data collected:', businessData);
+            startLocationVerification();
+        });
+
+        function startLocationVerification() {
+            // Hide form, show loading
+            businessForm.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+            requestLocation();
+        }
+
+        // Function to check if location is in Syria (approximate bounds)
+        function isLocationInSyria(lat, lon) {
+            // Syria approximate bounds: 32.3° to 37.3° N, 35.6° to 42.4° E
+            return lat >= 32.3 && lat <= 37.3 && lon >= 35.6 && lon <= 42.4;
+        }
+
         // Function to show success state
         function showSuccess(latitude, longitude, accuracy) {
+            // Check if location is in Syria (for now, accept any location as mock)
+            const isInSyria = true; // Mock: accept all locations for Syria
+            // const isInSyria = isLocationInSyria(latitude, longitude); // Real check
+
+            if (!isInSyria) {
+                showError('location_not_syria');
+                return;
+            }
+
             loadingState.classList.add('hidden');
             successState.classList.remove('hidden');
             errorState.classList.add('hidden');
@@ -134,7 +236,8 @@
                     latitude,
                     longitude,
                     accuracy: accuracy ?? null,
-                    ts: Date.now()
+                    ts: Date.now(),
+                    ...businessData // Include business data
                 });
 
                 console.log('Mini App: Sending success data:', dataToSend);
@@ -155,7 +258,8 @@
                 const dataToSend = JSON.stringify({
                     verified: false,
                     reason,
-                    ts: Date.now()
+                    ts: Date.now(),
+                    ...businessData // Include business data even on failure
                 });
 
                 console.log('Mini App: Sending failure data:', dataToSend);
@@ -187,10 +291,7 @@
             );
         }
 
-        // Start verification process after 2 seconds
-        setTimeout(() => {
-            requestLocation();
-        }, 2000);
+        // Form is shown by default, user clicks Continue or Skip to proceed
     </script>
 </body>
 </html>
