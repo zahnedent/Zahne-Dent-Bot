@@ -122,16 +122,24 @@
             longitudeEl.textContent = longitude.toFixed(6);
 
             if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.sendData(JSON.stringify({
+                const dataToSend = JSON.stringify({
                     verified: true,
                     latitude,
                     longitude,
                     accuracy: accuracy ?? null,
                     ts: Date.now()
-                }));
+                });
+
+                console.log('Mini App: Sending success data:', dataToSend);
+                window.Telegram.WebApp.sendData(dataToSend);
 
                 // IMPORTANT: bot receives web_app_data when the WebApp is closed
-                setTimeout(() => window.Telegram.WebApp.close(), 600);
+                setTimeout(() => {
+                    console.log('Mini App: Closing WebApp');
+                    window.Telegram.WebApp.close();
+                }, 600);
+            } else {
+                console.error('Mini App: Telegram WebApp not available!');
             }
         }
 
@@ -142,13 +150,21 @@
             errorState.classList.remove('hidden');
 
             if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.sendData(JSON.stringify({
+                const dataToSend = JSON.stringify({
                     verified: false,
                     reason,
                     ts: Date.now()
-                }));
+                });
 
-                setTimeout(() => window.Telegram.WebApp.close(), 600);
+                console.log('Mini App: Sending failure data:', dataToSend);
+                window.Telegram.WebApp.sendData(dataToSend);
+
+                setTimeout(() => {
+                    console.log('Mini App: Closing WebApp');
+                    window.Telegram.WebApp.close();
+                }, 600);
+            } else {
+                console.error('Mini App: Telegram WebApp not available!');
             }
         }
 
